@@ -1,0 +1,64 @@
+***Alimentation solaire pour Raspberry Pi***
+
+Votre Raspberry Pi est peu être le compagnon idéal pour des applications outdoor pour le data logging de données en tout genre :
+- station météo
+- mesure de la quantité de Co2 dans l'air
+- mesure de la présence de poussière
+
+Ou tout ce que vous voudrez…
+
+Cependant, dès le début de la conception de ce genre d'application, vous vous poserez sans doute la question de l'alimentation du Raspberry Pi.
+
+Naturellement, la première solutuion est de penser à une batterie par exemple une [Lipo](http://amzn.to/2hZvB44) qui ont l'avantage d'être légère pour une autonomie importante. 
+On va trouver des solutions pour pour 5000mAh pour une centaine de gramme et quelques dizaines d'euro (je ne donne pas de prix exact car le prix varie énorméément selon le sourcing).
+Avec une 5000mhA vous pourrez sans problème alimenter votre Raspberry Pi une quinzaine d'heures un Pi Zero une vingtaine d'heure. On peut même envisager encore plus avec des optimisation de consommation.
+
+
+Vient ensuite la problématique de la recharge de la batterie Lipo. Alors attention, on recharge pas une batterie Lipo n'importe comment. 
+
+# Un peu de sécurité sur les batteries Lipo
+
+Il faut respecter une tension de charge et avoir un courrant de charge en adéquation avec votre modèle de batterie.
+Il faut également que la batterie ne soit pas trop chaude pour être rechargée.
+
+Pour le courant ou la tension c'est votre chargeur qui devra remplir ce rôle.
+Pour la température, vous devez vous assurez que la batterie est équipé d'un composant qui coupe la possibilité de charge si la température est trop importante (Les batteries Lipo 3.7V sont généralement équipées de ce genre de composants)
+
+
+Pour résumé, il vous faudra donc un module de charge de batterie.
+
+Il vous faudra également une source d'alimenation pour votre chageur. Étant à l'extérieur les panneau solaires sontune bonne source d'alimentation.
+Il faudra seulement veiller à avoir une puissance crête en adéquation avec votre application et une régulateur de tension en amont de votre chageur de batterie.
+
+
+# Quel montage?
+
+
+La vidéo youtube disponible ci-dessous motre le montage que j'utilise :
+
+
+- 2 panneaux solaires 12V-1.5W
+- 1 régulateur DC-DC 5V
+- Une carte de charge [Lipo](http://amzn.to/2xZWjo0) et alimentation Rpi
+- un [consomètre USB](http://amzn.to/2xZWjo0)
+- Batterie Lipo 5000mAh en 3.7V
+
+
+# Charge et alimentation simultanée?
+
+Oui et non. On ne peut pas charger et «tirer du jus» sur une batterie simultanément.
+Cependant le panneau solaire peut charger la batterie et en cas de puissance suffisante, alimenter le RPi avec le courant disponible.
+
+Un peu de lecture sur le sujet : [ICI](https://electronics.stackexchange.com/questions/79075/using-a-12v-battery-while-simultaneously-charging-via-solar-panel?rq=1)
+
+
+# Oui mais ...
+
+Et oui, il y a un mais! La carte que j'utilise n'a pas la capacité de couper le circuit du panneau solaire en cas de puissance trop peu suffisante pour alimenter le Rpi.
+Du coup, la batterie étant en charge elle ne peut alimenter le RPi ce qui a pour effet de passer le RPi hors tension…
+
+Dans ma quête d'autonomie, il me sera dons nécessaire de commander le circuit d'alimentation en fonction du la charge disponible sur la ligne des panneaux solaies.
+Comment ? Mesure de courrant ? Commande de relais ?
+À voir, je suis encore en cours de réflexion.
+
+Et vous? avez vous déjà réalisé l'alimentation solaire pour Raspberry Pi?
